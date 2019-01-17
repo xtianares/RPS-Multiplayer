@@ -1,0 +1,51 @@
+/* ----------------------------------------------------------------------------
+    Project Styles
+----------------------------------------------------------------------------- */
+html {
+    min-height: 100%;
+    position: relative;
+}
+body {
+    font-family: 'Open Sans', 'Trebuchet MS', Verdana, Arial, Helvetica, sans-serif;
+    text-rendering: optimizeLegibility;
+    color: #444;
+    background-color: #56A8E3;
+    background: linear-gradient(45deg, #23A6D5, #23D5AB);
+    /* background-image: linear-gradient(to right top, #164ea2, #0081d1, #00aec3, #00d37f, #a8eb12); */
+    background-size: cover;
+    background-position: 50% 50%;
+    background-attachment: fixed;
+    overflow-y: scroll;
+}
+.container {
+    max-width: 1200px;
+}
+.container-fluid.but-fixed {
+    max-width: 1230px;
+}
+
+.chat-box .chat-display {
+    height: 200px;
+    overflow-y: auto;
+}
+.chat-box .card-footer {
+    padding-bottom: 1.3rem;
+    border-top: 0;
+    background-color: transparent;
+}
+
+/* ----------------------------------------------------------------------------
+    Page Media Queries
+----------------------------------------------------------------------------- */
+@media (min-width: 576px) {
+
+}
+@media (min-width: 768px) {
+
+}
+@media (min-width: 992px) {
+
+}
+@media (min-width: 1200px) {
+
+}
