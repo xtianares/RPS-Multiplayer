@@ -43,6 +43,35 @@ connectedRef.on("value", function(snap) {
     }
 });
 
+// watching for database changes on the /players
+playersRef.on("value", function(snap) {
+    if (snap.child("player1").exists()) {
+        console.log('player1 exist');
+        player1 = snap.val().player1;
+    } else {
+        console.log('player1 does not exist');
+        player1 = null;
+    }
+    if (snap.child("player2").exists()) {
+        console.log('player2 exist');
+        player2 = snap.val().player2;
+    } else {
+        console.log('player2 does not exist');
+        player2 = null;
+    }
+});
+
+// watching for database changes on the /chat
+chatRef.on("child_added", function(snap) {
+    let chat = snap.val(),
+        chatText = chat.text,
+        chatName = chat.name ? chat.name : 'Watcher';
+        chatEntry = $("<div>").html(chatName + ": " + chatText);
+
+    $(".chat-display").append(chatEntry);
+    $(".chat-display").scrollTop($(".chat-display")[0].scrollHeight);
+});
+
 // trigger to create/login new player
 $('.name-form').on('click', 'button', function(event) {
     event.preventDefault();
@@ -61,30 +90,17 @@ $('.name-form').on('click', 'button', function(event) {
             database.ref("/players/player2").onDisconnect().remove();
         }
 
-        let msg = playerName + " has joined!",
-            chatKey = database.ref().child("/chat/").push().key;
+        let chat = playerName + " has joined!";
 
-        database.ref("/chat/" + chatKey).set(msg);
+        chatRef.push({
+            name: 'System',
+            text: chat
+        });
 
         $("#player-name").val("");
     }
 });
 
-// playersRef.on("child_added", function (snap) {
-//     var chatMsg = snap.val();
-//     var chatEntry = $("<div>").html(chatMsg);
-//
-//     $(".chat-display").append(chatEntry);
-//     $(".chat-display").scrollTop($(".chat-display")[0].scrollHeight);
-// });
-
-chatRef.on("child_added", function (snap) {
-    var chatMsg = snap.val();
-    var chatEntry = $("<div>").html(chatMsg);
-
-    $(".chat-display").append(chatEntry);
-    $(".chat-display").scrollTop($(".chat-display")[0].scrollHeight);
-});
 
 
 
@@ -111,6 +127,11 @@ $('.choices').on("click", "button", function() {
 $('.chat-form').on('click', 'button', function(event) {
     event.preventDefault();
     let chat = $('#chat-input').val().trim();
+
+    chatRef.push({
+        name: playerName,
+        text: chat
+    });
 
     $('#chat-input').val('');
 });
