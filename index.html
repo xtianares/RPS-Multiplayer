@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700">
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Roboto+Slab:300,400,700">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
 </head>
 <body>
@@ -17,8 +17,9 @@
 <header id="header-wrapper" class="clearfix">
     <div class="container-fluid but-fixed">
         <div class="row justify-content-center">
-            <div class="col-12">
-                <h1>Rock, Paper, Scissors</h1>
+            <div class="col-12 mt-4 text-center">
+                <img class="header-img" src="assets/images/rps.png" alt="Rock, Paper, Scissors">
+                <h1>Rock - Paper - Scissors</h1>
             </div>
         </div>
     </div>
@@ -26,7 +27,24 @@
 <main>
     <div class="container-fluid but-fixed">
         <div class="row justify-content-center">
-            <div class="col-sm-10 col-md-8 col-lg-7">
+            <div class="col-sm-10 col-md-8 col-lg-6 mt-3">
+                <div class="card border-0 chat-box text-white bg-dark">
+                    <div class="card-body">
+                        <h5 class="text-center mb-3">To Start Playing, Enter Your Name Below</h3>
+                        <form class="name-form mb-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="player-name" placeholder="Enter your name here...">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-success">Play Now</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="chat-row" class="row justify-content-center">
+            <div class="col-sm-10 col-md-8 col-lg-6 mt-3">
                 <div class="card border-0 chat-box text-white bg-dark">
                     <div class="card-header">
                         <h5 class="card-title mb-0">Chat Box</h5>
@@ -57,6 +75,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
+<script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
 <script src="assets/javascript/app.js"></script>
 
 </body>
