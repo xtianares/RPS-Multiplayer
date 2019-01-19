@@ -13,17 +13,15 @@ let database = firebase.database(),
     connectionsRef = database.ref("/connections"),
     connectedRef = database.ref(".info/connected");
 
-// When the client's connection state changes...
 connectedRef.on("value", function(snap) {
+    if (snap.val()) {
+        var con = connectionsRef.push(true);
+        con.onDisconnect().remove();
+    }
+});
 
-  // If they are connected..
-  if (snap.val()) {
-
-    // Add user to the connections list.
-    var con = connectionsRef.push(true);
-    // Remove user from the connection list when they disconnect.
-    con.onDisconnect().remove();
-  }
+connectionsRef.on("value", function(snap) {
+    console.log(snap.numChildren())
 });
 
 
