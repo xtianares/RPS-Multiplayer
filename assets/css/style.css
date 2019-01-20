@@ -81,7 +81,11 @@ h1, h2, h3, h4, h5 {
     max-width: 150px;
 }
 .choices {
+    display: none !important;
     flex-wrap: wrap;
+}
+.choices.show {
+    display: flex !important;
 }
 .choices button {
     margin: 5px 3px;
@@ -97,6 +101,16 @@ h1, h2, h3, h4, h5 {
     padding-bottom: 0;
     height: 150px;
     overflow-y: auto;
+}
+.chat-box .chat-display div {
+    margin-bottom: 6px;
+    text-transform:capitalize;
+}
+.chat-box .chat-display .chat-user {
+    color: #E99D52;
+}
+.chat-box .chat-display div:first-letter {
+    text-transform:capitalize;
 }
 .chat-box .card-footer {
     padding-bottom: 1.3rem;
