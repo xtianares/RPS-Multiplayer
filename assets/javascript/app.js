@@ -87,10 +87,10 @@ playersRef.on("value", function(snap) {
             $("#status-area").text("Let the game begin!");
         }
         if (player1.choice != "" && player2.choice == "") {
-            $("#status-area").text("Waiting for " + player2.name + " to make a choice...");
+            $("#status-area").text("Waiting for " + player2.name + " to select a hand...");
         }
         if (player1.choice == "" && player2.choice != "") {
-            $("#status-area").text("Waiting for " + player1.name + " to make a choice...");
+            $("#status-area").text("Waiting for " + player1.name + " to select a hand...");
         }
     }
     else {
@@ -255,7 +255,7 @@ function compare(player1choice, player2choice) {
 function resetChoices() {
     // clearTimeout(stopTimeout);
     // $("#status-area").empty();
-    $("#status-area").empty().text("Players, make your choice!");
+    $("#status-area").empty().text("Players, select your hand!");
     $(".choices").prev(".card").find(".card-body").empty().text("Rock, Paper, Scissors...");
     $(".choices").find("button").removeAttr("disabled");
 

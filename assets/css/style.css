@@ -76,6 +76,11 @@ h1, h2, h3, h4, h5 {
     padding-bottom: 15px;
     height: 150px;
 }
+#game-row #status-area.card-body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: auto;
+}
 .pick-img {
     width: 100%;
     max-width: 150px;
