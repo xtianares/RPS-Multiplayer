@@ -96,6 +96,7 @@ playersRef.on("value", function(snap) {
     else {
         $("#status-area").text("Waiting for another player...");
     }
+    // console.log(snap.numChildren());
 
     // run comparison if both player have picked their choice
     if ((snap.child("player1").exists() && player1.choice) && (snap.child("player2").exists() && player2.choice)) {
@@ -108,13 +109,18 @@ playersRef.on("value", function(snap) {
         $("#player2").find(".card-body").empty().append(player2img);
         compare(player1choice, player2choice);
     }
+
+    $("#player1").find(".wins").text(player1Details.wins);
+    $("#player1").find(".losses").text(player1Details.losses);
+    $("#player2").find(".wins").text(player2Details.wins);
+    $("#player2").find(".losses").text(player2Details.losses);
 });
 
 // watching if there a new chat added to the database
 chatRef.on("child_added", function(snap) {
     let chat = snap.val(),
         chatText = chat.text,
-        chatName = chat.name ? chat.name : "Anonymous";
+        chatName = chat.name ? chat.name : "System";
         chatEntry = `<div><span class="chat-user">${chatName}:</span> ${chatText}</div>`
         // chatEntry = $("<div>").html(chatName + ": " + chatText);
 
