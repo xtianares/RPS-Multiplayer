@@ -83,7 +83,7 @@ playersRef.on("value", function(snap) {
 
     if (snap.child("player1").exists() && snap.child("player2").exists()) {
         checkStatus(); // this will just set the game status
-        if (gameStatus != "reset" || gameStatus != "playing") {
+        if (gameStatus != "playing") {
             $("#status-area").text("Let the game begin!");
         }
         if (player1.choice != "" && player2.choice == "") {
@@ -96,7 +96,13 @@ playersRef.on("value", function(snap) {
     else {
         $("#status-area").text("Waiting for another player...");
     }
-    // console.log(snap.numChildren());
+    console.log(snap.numChildren());
+    if (snap.numChildren() >= 2) {
+        $("#start-row .card").after("<p class='no-slot text-center mt-3'>A game is in progress, but you can watch and chat with the players.</p>");
+    }
+    else {
+        $("#start-now .no-slot").hide();
+    }
 
     // run comparison if both player have picked their choice
     if ((snap.child("player1").exists() && player1.choice) && (snap.child("player2").exists() && player2.choice)) {
@@ -168,6 +174,12 @@ $(".name-form").on("click", "button", function(event) {
         $("#game-row").addClass("show");
         $("#chat-row").addClass("show");
     }
+    else {
+        $("#player-name").val("");
+        $("#start-row").hide();
+        $("#game-row").addClass("show");
+        $("#chat-row").addClass("show");
+    }
 });
 
 // showing/removing choice image on hover
@@ -230,7 +242,7 @@ function compare(player1choice, player2choice) {
     }
     else {
         // player2 wins
-        $("#status-area").html("<strong>" + player2.name + " wins!" + "</strong><br/>" + player2choice + " beats " + player2choice);
+        $("#status-area").html("<strong>" + player2.name + " wins!" + "</strong><br/>" + player2choice + " beats " + player1choice);
         player2wins = player2Details.wins + 1;
         player1losses = player1Details.losses + 1;
         $("#player2").find(".wins").text(player2wins);
@@ -255,8 +267,8 @@ function resetChoices() {
         "player2/wins": player2wins,
         "player2/losses": player2losses
     });
-    database.ref("gameStatus").set("reset");
-    database.ref("gameStatus").onDisconnect().remove();
+    // database.ref("gameStatus").set("reset");
+    // database.ref("gameStatus").onDisconnect().remove();
 }
 
 // focusing on the login/name form
