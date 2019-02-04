@@ -8,5 +8,8 @@ Both players pick either rock, paper or scissors. After the players make their s
 
 Players and spectators are allowed to use the chat functionality.
 
-### Play he Game
+### Play the Game
 https://xtianares.github.io/RPS-Multiplayer/
+
+### Tech specs
+This game is using a realtime Firebase database for gameplay and chat.
